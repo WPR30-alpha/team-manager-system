@@ -1,0 +1,79 @@
+.Bubble {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    border: 1px solid #333;
+}
+
+.Bubble img {
+    width: 70%;
+    height: auto;
+    margin-left: 15%;
+    margin-top: 8px;
+}
+
+.Bubble h1 {
+    font-size: 2em;
+    margin-top: 5px;
+    text-align: center;
+    background: white;
+}
+
+.TeamManager {
+    margin: auto;
+    border: 1px solid red;
+    width: 70%;
+    height: 100vh;
+}
+
+.TeamManager header {
+    flex: 1;
+    height: 100px;
+    display: flex;
+}
+
+.header_container {
+    display: flex;
+    width: 100%;
+}
+
+.TeamManager .header_text {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+}
+
+.TeamManager .header_text > h2 {
+    cursor: pointer;
+}
+
+.active_header {
+    color: #117ABF;
+    font-weight: bold;
+}
+
+.TeamManager .header_button {
+    width: 85%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header_button_actual {
+    height: 60px;
+    width: 160px;
+    background: #117ABF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.TeamManager .main_filters {
+    height: 100px;
+    border: 1px solid #333;
+    width: 100%;
+}
