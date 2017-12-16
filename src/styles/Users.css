@@ -1,9 +1,23 @@
+.users_table {
+    width: 100%;
+    position: relative;
+}
+
 .filters {
     border: 1px solid #333;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     font-size: 24px;
     height: 70px;
     color: #333;
+    width: 100%;
+    line-height: 70px;
+}
+
+.filters > th {
+    border: 1px solid #333;
+    width: 20%;
+}
+
+.user_row {
+    border: 1px solid red;
+
 }
