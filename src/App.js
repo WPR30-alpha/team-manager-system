@@ -16,7 +16,7 @@ export default class App extends Component {
                     <Route path="/refs" component={Img} /> {/* This component is going to be removed. It is simply for reference to the wireframe */}
 
                 </Switch>
-                {/* <TMBubble fontSize="14"/> */}
+                {/* <TMBubble fontSize="14"/>  */}
                 {/* <TeamManager /> */}
             </div>
         )
