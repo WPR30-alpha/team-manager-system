@@ -4,20 +4,42 @@
 }
 
 .filters {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
     border: 1px solid #333;
+    background: #117ABF;
     font-size: 24px;
     height: 70px;
     color: #333;
     width: 100%;
-    line-height: 70px;
+    color: white;
+    border-radius: 5px 5px 0px 0px;
 }
 
-.filters > th {
+.grid_column {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.grid_column + .grid_column {
+    border-left: 1px solid rgb(28, 107, 160);
+}
+
+.users_table_row:nth-child(even) {
+    background: rgb(216, 232, 255);
+}
+
+.users_table_row {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
     border: 1px solid #333;
-    width: 20%;
+    border-top: none;
+    height: 50px;
 }
 
-.user_row {
-    border: 1px solid red;
-
+.users_table_cell {
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
 }
