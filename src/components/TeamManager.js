@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import '../styles/Bubble.css'
+import '../styles/TeamManager.css'
 import logo from '../styles/assets/team_logo.png'
-import {Switch, Route} from 'react-router-dom'
 
 // COMPONENT IMPORTS
 import Users from './Users'
 import Teams from './Teams'
-
 
 export default class TeamManager extends Component {
     constructor(){
@@ -15,6 +14,16 @@ export default class TeamManager extends Component {
         this.state = {
             activeFilter: 'Users'
         }
+    }
+    
+    componentDidMount(){
+        document.title = "Team Manager"
+    }
+
+    _handleFilterChange(filter){
+        this.setState({
+            activeFilter: filter
+        })
     }
 
     render(){
@@ -25,26 +34,18 @@ export default class TeamManager extends Component {
                     <div className="header_container">
                         <div className="header_text">
                             <h2 className={activeFilter === 'Users' ? 'active_header' : undefined} 
-                                onClick={_=>{
-                                    this.setState({activeFilter: 'Users'})
-                                    this.props.history.push('/teammanager/users')}
-                                }>Users</h2>
+                                onClick={_=>this._handleFilterChange('Users')}>Users</h2>
                             <h2 className={activeFilter === 'Teams' ? 'active_header' : undefined} 
-                                onClick={_=>{
-                                    this.setState({activeFilter: 'Teams'})
-                                    this.props.history.push('/teammanager/teams')}
-                                }>Teams</h2>
+                                onClick={_=>this._handleFilterChange('Teams')}>Teams</h2>
                         </div>
                         <div className="header_button">
-                            <button className="header_button_actual"> {this.state.activeFilter === 'Users' ?  'Add New User' : 'Create New Team'}</button>
+                            <button className="header_button_actual"> {activeFilter === 'Users' ?  'Add New User' : 'Create New Team'}</button>
                         </div>
                     </div>
                 </header>
                 <main>
-                    <Switch>
-                        <Route path="/teammanager/users" component={Users} />
-                        <Route path="/teammanager/teams" component={Teams} />
-                    </Switch>
+                    { activeFilter === 'Users' ? <Users /> :
+                    <Teams /> }
                 </main>
                 <footer>
 
@@ -62,7 +63,7 @@ export function TMBubble (props){
     return (
         <div className="Bubble" style={{height: props.height + 'px', width: props.width + 'px', fontSize: props.fontSize + "px"}}>
             <img src={logo} alt="team_manage_logo" />
-            {props.hideText ? null : <h1>Team Management</h1>}
+            {props.hideText || <h1>Team Management</h1>}
         </div>
     )
 }

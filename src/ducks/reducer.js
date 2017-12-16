@@ -1,8 +1,9 @@
 const initialState = {
-    num: 0
+    num: 0,
+    pokemon: undefined
 }
 
-// ===== ACTIONS ===== //
+// ===== ACTION TYPES ===== //
 const TEST = "TEST";
 
 // ===== REDUCER ===== //
