@@ -4,6 +4,7 @@
 }
 
 .filters {
+    cursor: pointer;
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
     background: #117ABF;

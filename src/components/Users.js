@@ -93,12 +93,14 @@ export default class Users extends React.Component{
         this.setState(_=>{
             let willSort = this.state.usersList
             if (flag === type) {
+                // Sort the list ascending
                 willSort = willSort.sort((a,b)=> {
                     if (a[type] < b[type]) return 1
                     else if (a[type] > b[type]) return -1
                     return 0
                 })
             } else {
+                // Sort the list descending
                 willSort = willSort.sort((a,b)=> {
                     if (a[type] < b[type]) return -1
                     else if (a[type] > b[type]) return 1
