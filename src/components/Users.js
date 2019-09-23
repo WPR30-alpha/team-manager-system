@@ -1,42 +1,153 @@
 import React from 'react'
 import '../styles/Users.css'
 
-export default function Users (){
-    document.title = "Team Manager | Users"
-    return (
-        <div className="Users">
-            {/* <div className="filters">
-                <h2>Full Name</h2>
-                <h2>Position</h2>
-                <h2>Status</h2>
-                <h2>Supervisor</h2>
-                <h2>Teams</h2>
-            </div> */}
-            {/* <div className="filter_table"> */}
-                <table className="users_table">
-                    <tr className="filters">
-                        <th>Full Name</th>
-                        <th>Position</th>
-                        <th>Status</th>
-                        <th>Supervisor</th>
-                        <th>Teams</th>
-                    </tr>
-                    <tr className="user_row">
-                        <td>Andrew</td>
-                        <td>Manager, Development</td>
-                        <td>Active</td>
-                        <td>N/A</td>
-                        <td>Admin, Managerial</td>
-                    </tr>
-                    <tr className="user_row" style={{background: '#ddd'}}>
-                        <td>Brennon</td>
-                        <td>Developer, Front End</td>
-                        <td>Inactive</td>
-                        <td>Andrew</td>
-                        <td>None</td>
-                    </tr>
-                </table>
-            {/* </div> */}
-        </div>
-    )
+export default class Users extends React.Component{
+
+    constructor(){
+        super()
+
+        this.state = {
+            lastSorted: '',
+            usersList: [
+                {
+                    name: 'Andrew Garvin',
+                    position: 'Manager, Development',
+                    status: 'Active',
+                    supervisor: '',
+                    teams: ['Development', 'Manager', 'Admin']
+                },
+                {
+                    name: 'Brennon Schow',
+                    position: 'Developer, Back End',
+                    status: 'Active',
+                    supervisor: 'Andrew',
+                    teams: ['Development']
+                },
+                {
+                    name: 'Alan Miller',
+                    position: 'High Judge',
+                    status: 'Inactive',
+                    supervisor: '',
+                    teams: ['Law', 'Styling']
+                },
+                {
+                    name: 'Emily Keator',
+                    position: 'Styling Guru',
+                    status: 'Active',
+                    supervisor: '',
+                    teams: ['Styling', 'Development']
+                },
+                {
+                    name: 'Andrew Garvin',
+                    position: 'Manager, Development',
+                    status: 'Active',
+                    supervisor: '',
+                    teams: ['Development', 'Manager', 'Admin']
+                },
+                {
+                    name: 'Brennon Schow',
+                    position: 'Developer, Back End',
+                    status: 'Active',
+                    supervisor: 'Andrew',
+                    teams: ['Development']
+                },
+                {
+                    name: 'Alan Miller',
+                    position: 'High Judge',
+                    status: 'Inactive',
+                    supervisor: '',
+                    teams: ['Law', 'Styling']
+                },
+                {
+                    name: 'Emily Keator',
+                    position: 'Styling Guru',
+                    status: 'Active',
+                    supervisor: '',
+                    teams: ['Styling', 'Development']
+                },
+                {
+                    name: 'Andrew Garvin',
+                    position: 'Manager, Development',
+                    status: 'Active',
+                    supervisor: '',
+                    teams: ['Development', 'Manager', 'Admin']
+                },
+                {
+                    name: 'Brennon Schow',
+                    position: 'Developer, Back End',
+                    status: 'Active',
+                    supervisor: 'Andrew',
+                    teams: ['Development']
+                }
+            ]
+        }
+        this.sortUsers = this.sortUsers.bind(this)
+    }
+
+    componentWillMount(){
+        document.title = "Team Manager | Users"
+    }
+
+    sortUsers(type){
+        let flag = this.state.lastSorted
+        this.setState(_=>{
+            let willSort = this.state.usersList
+            if (flag === type) {
+                // Sort the list ascending
+                willSort = willSort.sort((a,b)=> {
+                    if (a[type] < b[type]) return 1
+                    else if (a[type] > b[type]) return -1
+                    return 0
+                })
+            } else {
+                // Sort the list descending
+                willSort = willSort.sort((a,b)=> {
+                    if (a[type] < b[type]) return -1
+                    else if (a[type] > b[type]) return 1
+                    return 0
+                })
+            }
+            return {
+                usersList: willSort,
+                lastSorted: !flag ? type : undefined
+            }
+        })
+    }
+
+    render(){
+
+        let showUsersList = this.state.usersList.map((e,i,a)=>{
+            let listTeams = ''
+            e.teams.forEach((el,ind,ar)=> ind === 0 ? listTeams += el : listTeams += ', ' + el)
+            return (
+                <div className="users_table_row">
+                    <h2 className="users_table_cell">{e.name}</h2>
+                    <h2 className="users_table_cell">{e.position}</h2>
+                    <h2 className="users_table_cell">{e.status}</h2>
+                    <h2 className="users_table_cell">{e.supervisor || 'N/A'}</h2>
+                    <h2 className="users_table_cell">{listTeams}</h2>
+                </div>
+            )
+        })
+
+        return (
+            <div className="Users">
+
+                <div className="users_table">
+                    <div className="filters">
+                        <h2 className="grid_column" onClick={_=>this.sortUsers('name')}>Full Name</h2>
+                        <h2 className="grid_column" onClick={_=>this.sortUsers('position')}>Position</h2>
+                        <h2 className="grid_column" onClick={_=>this.sortUsers('status')}>Status</h2>
+                        <h2 className="grid_column" onClick={_=>this.sortUsers('supervisor')}>Supervisor</h2>
+                        <h2 className="grid_column" onClick={_=>this.sortUsers('teams')}>Teams</h2>
+                    </div>
+
+                    <div className="table_body">
+                        {showUsersList}
+                    </div>
+
+                </div>
+            </div>
+        )
+    }
 }

@@ -6,14 +6,17 @@ import logo from '../styles/assets/team_logo.png'
 // COMPONENT IMPORTS
 import Users from './Users'
 import Teams from './Teams'
+import Modal from './Modal'
 
 export default class TeamManager extends Component {
     constructor(){
         super()
         
         this.state = {
-            activeFilter: 'Users'
+            activeFilter: 'Users',
+            modal: false
         }
+        this.buttonPress = this.buttonPress.bind(this)
     }
     
     componentDidMount(){
@@ -22,8 +25,13 @@ export default class TeamManager extends Component {
 
     _handleFilterChange(filter){
         this.setState({
-            activeFilter: filter
+            activeFilter: filter,
+            modal: false
         })
+    }
+
+    buttonPress(){
+        this.setState({ modal: true })
     }
 
     render(){
@@ -39,11 +47,12 @@ export default class TeamManager extends Component {
                                 onClick={_=>this._handleFilterChange('Teams')}>Teams</h2>
                         </div>
                         <div className="header_button">
-                            <button className="header_button_actual"> {activeFilter === 'Users' ?  'Add New User' : 'Create New Team'}</button>
+                            <button className="header_button_actual" onClick={ _=> this.buttonPress() } > {activeFilter === 'Users' ?  'Add New User' : 'Create New Team'}</button>
                         </div>
                     </div>
                 </header>
                 <main>
+                    {this.state.modal && <Modal type={this.state.activeFilter}/>}
                     { activeFilter === 'Users' ? <Users /> :
                     <Teams /> }
                 </main>
